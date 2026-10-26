@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AL-KHABAR: NAHWU NEXUS - Premium EdTech</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        midnight: '#030B14',
+                        navy: '#061629',
+                        ocean: '#0A2342',
+                        deepsea: '#0B4F71',
+                        cyan: '#38D9F5',
+                        royalgold: '#D6AE52',
+                        champagne: '#F5DE9A',
+                        softwhite: '#F4F8FC',
+                        bluegrey: '#9CB2C9'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        arabic: ['"Noto Naskh Arabic"', 'serif']
+                    },
+                    animation: {
+                        'spin-slow': 'spin 12s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'gradient-x': 'gradient-x 15s ease infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'pulse-glow': {
+                            '0%, 100%': { opacity: 1, filter: 'drop-shadow(0 0 15px rgba(214,174,82,0.6))' },
+                            '50%': { opacity: .7, filter: 'drop-shadow(0 0 5px rgba(214,174,82,0.2))' },
+                        },
+                        'gradient-x': {
+                            '0%, 100%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'left center'
+                            },
+                            '50%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'right center'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #030B14;
+            color: #F4F8FC;
+            overflow-x: hidden;
+        }
+        
+        /* Advanced Background */
+        .bg-animated-mesh {
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(11, 79, 113, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(10, 35, 66, 0.6) 0%, transparent 50%),
+                linear-gradient(135deg, #030B14 0%, #061629 100%);
+            background-attachment: fixed;
+        }
+
+        .glass-panel {
+            background: rgba(10, 35, 66, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(214, 174, 82, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-panel:hover {
+            border-color: rgba(56, 217, 245, 0.6);
+            box-shadow: 0 15px 45px 0 rgba(56, 217, 245, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        /* Image Styling */
+        .premium-img {
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            border: 2px solid rgba(214,174,82,0.3);
+            transition: transform 0.5s ease;
+        }
+        .premium-img:hover {
+            transform: scale(1.03);
+            border-color: rgba(56,217,245,0.6);
+        }
+
+        .gold-text {
+            background: linear-gradient(135deg, #F5DE9A, #D6AE52, #F5DE9A);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-x 5s linear infinite;
+        }
+        
+        .cyan-glow-text {
+            text-shadow: 0 0 15px rgba(56, 217, 245, 0.6);
+        }
+
+        .arabic-text {
+            font-family: 'Noto Naskh Arabic', serif;
+            direction: rtl;
+            line-height: 2.2;
+        }
+
+        /* Interactive Accordion */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+            opacity: 0;
+        }
+        .accordion-content.expanded {
+            max-height: 2500px;
+            opacity: 1;
+            margin-top: 1rem;
+        }
+        .accordion-header { cursor: pointer; }
+        .accordion-header i { transition: transform 0.3s ease; }
+        .accordion-header.active i.fa-chevron-down { transform: rotate(180deg); }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #D6AE52 0%, #B8923A 100%);
+            color: #030B14;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(214, 174, 82, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+        .btn-primary:hover::after {
+            left: 100%;
+            opacity: 1;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(214, 174, 82, 0.8);
+        }
+
+        .view-section { display: none; opacity: 0; transition: opacity 0.5s ease-in; }
+        .view-section.active { display: block; opacity: 1; }
+        
+        /* Scroll Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Toast */
+        #toast {
+            position: fixed; bottom: 20px; right: 20px; z-index: 100;
+            transform: translateX(150%); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        #toast.show { transform: translateX(0); }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #030B14; }
+        ::-webkit-scrollbar-thumb { background: #0B4F71; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #38D9F5; }
+    </style>
+</head>
+<body class="bg-animated-mesh min-h-screen font-sans antialiased text-softwhite">
+    
+    <nav class="fixed w-full z-50 glass-panel border-x-0 border-t-0 rounded-none px-6 py-4 flex justify-between items-center hidden" id="main-nav">
+        <div class="flex items-center gap-3 cursor-pointer group" onclick="navigateTo('dashboard')">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-royalgold to-champagne flex items-center justify-center shadow-[0_0_15px_rgba(214,174,82,0.5)] group-hover:rotate-12 transition-transform">
+                <i class="fa-solid fa-compass text-midnight text-xl"></i>
+            </div>
+            <span class="font-black text-2xl tracking-wider text-white">NAHWU<span class="text-cyan">NEXUS</span></span>
+        </div>
+        <div class="hidden md:flex gap-8 items-center font-semibold text-sm tracking-wide">
+            <button onclick="navigateTo('dashboard')" class="text-bluegrey hover:text-cyan transition-colors">DASHBOARD</button>
+            <button onclick="navigateTo('arena')" class="text-royalgold hover:text-champagne transition-colors flex items-center gap-2">
+                <i class="fa-solid fa-shield-halved"></i> ARENA
+            </button>
+            <div class="flex items-center gap-2 bg-midnight px-4 py-2 rounded-full border border-ocean shadow-inner">
+                <i class="fa-solid fa-bolt text-cyan text-sm"></i>
+                <span id="nav-xp" class="text-sm font-bold text-white">0 XP</span>
+            </div>
+        </div>
+        <button class="md:hidden text-2xl text-royalgold" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+            <i class="fa-solid fa-bars-staggered"></i>
+        </button>
+    </nav>
+    
+    <div id="mobile-menu" class="hidden fixed top-[72px] left-0 w-full glass-panel z-40 flex-col p-4 border-b border-ocean md:hidden">
+        <button onclick="navigateTo('dashboard'); this.parentNode.classList.add('hidden')" class="text-left font-bold py-3 border-b border-navy text-white">DASHBOARD</button>
+        <button onclick="navigateTo('arena'); this.parentNode.classList.add('hidden')" class="text-left font-bold py-3 text-royalgold">CHALLENGE ARENA</button>
+    </div>
+
+    <main id="app-container" class="pt-0 md:pt-20 pb-12 px-4 md:px-8 max-w-[1400px] mx-auto min-h-screen relative">
+        
+        <!-- VIEW: HERO -->
+        <section id="view-hero" class="view-section active min-h-screen flex flex-col items-center justify-center text-center relative py-12 overflow-hidden">
+            
+            <!-- Dynamic Background Elements -->
+            <div class="absolute top-1/4 left-10 w-64 h-64 bg-cyan/20 rounded-full blur-[100px] -z-10"></div>
+            <div class="absolute bottom-1/4 right-10 w-80 h-80 bg-royalgold/10 rounded-full blur-[120px] -z-10"></div>
+
+            <!-- Academic Credit Header (Upgraded) -->
+            <div class="animate-float mb-12 relative z-10 glass-panel px-8 py-8 rounded-[2.5rem] border-2 border-royalgold max-w-4xl w-full mx-auto shadow-[0_0_50px_rgba(214,174,82,0.3)] bg-gradient-to-b from-navy/90 to-midnight/95 overflow-hidden">
+                <div class="absolute top-0 right-0 w-full h-1 bg-gradient-to-r from-transparent via-royalgold to-transparent opacity-50"></div>
+                
+                <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-royalgold to-champagne text-midnight text-sm font-black px-8 py-2 rounded-full tracking-widest uppercase shadow-[0_5px_20px_rgba(214,174,82,0.6)] border-2 border-midnight flex items-center gap-2">
+                    <i class="fa-solid fa-gem"></i> Premium Learning Experience
+                </div>
+                
+                <div class="flex flex-col md:flex-row items-center justify-center gap-8 mt-4">
+                    <div class="w-32 h-32 md:w-40 md:h-40 shrink-0 rounded-full border-4 border-ocean relative shadow-[0_0_30px_rgba(56,217,245,0.3)] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=400&q=80" alt="Islamic Geometry" class="w-full h-full object-cover opacity-80 mix-blend-screen">
+                        <div class="absolute inset-0 bg-gradient-to-t from-midnight to-transparent"></div>
+                        <i class="fa-solid fa-graduation-cap absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-5xl text-royalgold drop-shadow-lg"></i>
+                    </div>
+                    
+                    <div class="text-center md:text-left">
+                        <h3 class="text-sm md:text-base text-cyan font-bold tracking-[0.3em] uppercase mb-2">Sebuah Karya Interaktif Eksklusif Oleh</h3>
+                        <h2 class="text-3xl md:text-5xl font-black text-white mb-2 tracking-tight" style="text-shadow: 0 4px 10px rgba(0,0,0,0.5);">DR. MOHD TAUFIQ BIN ABD TALIB</h2>
+                        <div class="w-24 md:w-32 h-1 bg-gradient-to-r from-royalgold to-transparent mx-auto md:mx-0 mb-4 rounded-full"></div>
+                        <p class="text-base md:text-lg text-bluegrey font-medium mb-1 uppercase tracking-widest"><i class="fa-solid fa-landmark text-cyan mr-2"></i>Fakulti Pengajian Kontemporari Islam (FKI)</p>
+                        <p class="text-lg md:text-xl text-champagne font-black tracking-widest"><i class="fa-solid fa-university text-royalgold mr-2"></i>UNIVERSITI SULTAN ZAINAL ABIDIN (UniSZA)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Title Area -->
+            <div class="z-10 w-full mx-auto relative mb-12">
+                <h4 class="bg-gradient-to-r from-ocean to-midnight inline-block px-8 py-3 rounded-full border border-cyan/40 text-cyan font-black tracking-[0.2em] uppercase mb-8 text-sm md:text-base shadow-[0_0_20px_rgba(56,217,245,0.3)]">
+                    <i class="fa-solid fa-handshake-angle text-royalgold mr-2"></i> 
+                    Khas Untuk Pelajar Syariah 
+                    <i class="fa-solid fa-handshake-angle text-royalgold ml-2"></i>
+                </h4>
+                
+                <h1 class="text-7xl md:text-[9rem] font-black mb-0 tracking-tighter leading-none" style="text-shadow: 0 15px 50px rgba(0,0,0,0.6);">
+                    AL-<span class="gold-text">KHABAR</span>
+                </h1>
+                <h2 class="text-4xl md:text-6xl font-light mb-8 tracking-[0.4em] text-white cyan-glow-text mt-4">NAHWU NEXUS</h2>
+                
+                <div class="glass-panel p-6 rounded-2xl max-w-4xl mx-auto mb-8 border-l-4 border-r-4 border-l-royalgold border-r-cyan">
+                    <p class="arabic-text text-3xl md:text-5xl text-champagne font-bold leading-relaxed" dir="rtl" style="text-shadow: 0 4px 15px rgba(214,174,82,0.4);">
+                        مَرْحَبًا بِكُمْ يَا طُلَّابَ الشَّرِيعَةِ<br>
+                        <span class="text-2xl md:text-3xl text-cyan font-normal mt-2 block">افهم الخبر، وأتقن النحو، وانطلق في اللغة العربية</span>
+                    </p>
+                </div>
+
+                <p class="text-lg md:text-xl text-bluegrey mb-12 max-w-3xl mx-auto font-light leading-relaxed">
+                    Tinggalkan cara tradisional. Kuasai sintaksis nahu Arab secara mendalam melalui platform digital <strong class="text-white">bertaraf premium</strong>. Terokai rahsia Al-Khabar berdasarkan metodologi <em>At-Tadbiq An-Nahwi</em> yang tulen.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                    <button onclick="startJourney()" class="btn-primary px-12 py-6 rounded-full text-xl shadow-[0_0_40px_rgba(214,174,82,0.4)] flex items-center gap-4 w-full sm:w-auto justify-center group">
+                        MULA PENJELAJAHAN <i class="fa-solid fa-rocket group-hover:translate-x-2 transition-transform"></i>
+                    </button>
+                    <button onclick="navigateTo('arena')" class="px-12 py-6 rounded-full text-xl border-2 border-cyan text-cyan hover:bg-cyan hover:text-midnight font-bold transition-all flex items-center gap-4 w-full sm:w-auto justify-center backdrop-blur-sm group">
+                        CABARAN ARENA <i class="fa-solid fa-shield-halved group-hover:rotate-180 transition-transform duration-500"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-dashboard" class="view-section pt-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6 border-b border-ocean pb-6">
+                <div>
+                    <h2 class="text-4xl font-black text-white mb-2 tracking-tight">Akademi <span class="text-cyan">Nahwu</span></h2>
+                    <p class="text-bluegrey text-lg">Pilih modul pembelajaran atau uji kefahaman anda.</p>
+                </div>
+                <div class="glass-panel px-8 py-4 rounded-2xl text-center border-royalgold/30 shadow-[0_0_20px_rgba(214,174,82,0.1)]">
+                    <div class="text-xs text-bluegrey uppercase tracking-widest mb-1 font-bold">Penguasaan Keseluruhan</div>
+                    <div class="text-4xl font-black gold-text" id="dash-progress">0%</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Modules -->
+                <div class="lg:col-span-8 space-y-6">
+                    <h3 class="text-2xl font-bold mb-6 text-white flex items-center gap-3">
+                        <i class="fa-solid fa-layer-group text-cyan"></i> Modul Komprehensif
+                    </h3>
+                    <div id="modules-container" class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="lg:col-span-4 space-y-6">
+                    <!-- Arena Card -->
+                    <div class="glass-panel p-8 rounded-3xl border border-cyan/40 hover:-translate-y-2 transition-transform cursor-pointer relative overflow-hidden group" onclick="navigateTo('arena')">
+                        <div class="absolute -right-10 -top-10 w-40 h-40 bg-cyan/20 rounded-full blur-3xl group-hover:bg-cyan/30 transition-colors"></div>
+                        <i class="fa-solid fa-shield-halved text-4xl text-cyan mb-4"></i>
+                        <h3 class="text-2xl font-black text-white mb-2">Challenge Arena</h3>
+                        <p class="text-sm text-bluegrey mb-6">40 Cabaran Analisis Naskhah Arab.</p>
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <div class="text-xs text-cyan uppercase tracking-widest font-bold mb-1">Diselesaikan</div>
+                                <div class="text-2xl font-black text-white"><span id="arena-stats">0</span><span class="text-bluegrey text-lg">/40</span></div>
+                            </div>
+                            <div class="w-12 h-12 rounded-full bg-cyan text-midnight flex items-center justify-center text-xl shadow-[0_0_15px_rgba(56,217,245,0.4)]">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exam Card -->
+                    <div class="glass-panel p-8 rounded-3xl border border-royalgold/40 hover:-translate-y-2 transition-transform cursor-pointer bg-gradient-to-br from-navy to-midnight relative group" onclick="navigateTo('exam')">
+                        <i class="fa-solid fa-crown text-4xl text-royalgold mb-4"></i>
+                        <h3 class="text-2xl font-black text-champagne mb-2">Peperiksaan Akhir</h3>
+                        <p class="text-sm text-bluegrey mb-6">Ujian rawak 15 soalan. Buktikan tahap penguasaan Master.</p>
+                        <button class="w-full py-3 bg-royalgold text-midnight rounded-xl font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(214,174,82,0.3)] group-hover:bg-champagne transition-colors">
+                            Mula Ujian
+                        </button>
+                    </div>
+
+                    <!-- Badges -->
+                    <div class="glass-panel p-6 rounded-3xl border-white/5">
+                        <h3 class="text-sm font-bold mb-4 text-bluegrey uppercase tracking-widest"><i class="fa-solid fa-medal text-royalgold mr-2"></i> Lencana Pencapaian</h3>
+                        <div id="badges-container" class="flex flex-wrap gap-3">
+                            <!-- Badges injected here -->
+                        </div>
+                    </div>
+                    
+                    <button onclick="resetProgress()" class="text-xs text-red-500 hover:text-red-400 font-bold uppercase tracking-wider w-full text-center mt-2 transition-colors">Reset Keseluruhan Data</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-module" class="view-section pt-4">
+            <button onclick="navigateTo('dashboard')" class="mb-8 text-bluegrey hover:text-cyan font-bold transition-colors flex items-center gap-2 bg-navy px-4 py-2 rounded-full border border-ocean w-max">
+                <i class="fa-solid fa-arrow-left"></i> KEMBALI KE AKADEMI
+            </button>
+            
+            <div id="module-content-area" class="glass-panel p-8 md:p-12 rounded-[2rem] max-w-5xl mx-auto relative border-t-4 border-t-cyan">
+                <!-- Content injected here -->
+            </div>
+            
+            <div class="max-w-5xl mx-auto mt-8 flex justify-between gap-4">
+                <button id="btn-prev-mod" class="hidden px-8 py-4 rounded-xl border border-ocean hover:bg-navy font-bold text-white transition-colors">MODUL SEBELUMNYA</button>
+                <button id="btn-next-mod" class="hidden px-8 py-4 bg-cyan text-midnight hover:bg-white font-black rounded-xl transition-colors ml-auto shadow-[0_0_20px_rgba(56,217,245,0.4)] uppercase tracking-wider">SETERUSNYA</button>
+            </div>
+        </section>
+
+        <section id="view-arena" class="view-section pt-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex justify-between items-center mb-8">
+                    <button onclick="navigateTo('dashboard')" class="text-bluegrey hover:text-white transition-colors flex items-center gap-2">
+                        <i class="fa-solid fa-times text-xl"></i> Keluar
+                    </button>
+                    <div class="text-cyan font-bold tracking-widest uppercase">Arena Cabaran</div>
+                </div>
+                
+                <div class="text-center mb-12">
+                    <h2 class="text-5xl font-black mb-4 text-white">ساحة التحدّي</h2>
+                    <p class="text-bluegrey text-lg">Analisis, tafsir, dan takluki 40 cabaran nahu tahap tinggi.</p>
+                    
+                    <div class="w-full bg-navy rounded-full h-3 mt-8 mb-3 shadow-inner border border-ocean">
+                        <div id="arena-progress-bar" class="bg-gradient-to-r from-cyan to-royalgold h-full rounded-full transition-all duration-500 ease-out relative" style="width: 0%">
+                            <div class="absolute right-0 top-1/2 transform -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-[0_0_10px_white]"></div>
+                        </div>
+                    </div>
+                    <div class="text-sm text-right font-bold text-cyan">CABARAN <span id="arena-q-num" class="text-xl text-white">1</span> <span class="text-bluegrey">/ 40</span></div>
+                </div>
+
+                <div id="arena-question-container" class="glass-panel p-8 md:p-12 rounded-[2rem] relative min-h-[400px] border-royalgold/30 shadow-[0_10px_40px_rgba(0,0,0,0.4)]">
+                    <!-- Question injected here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="view-exam" class="view-section pt-10">
+             <div id="exam-container" class="max-w-4xl mx-auto"></div>
+        </section>
+    </main>
+
+    <div id="toast" class="glass-panel px-6 py-4 rounded-xl border-l-4 border-cyan flex items-center gap-4 shadow-[0_5px_20px_rgba(0,0,0,0.5)]">
+        <div class="w-10 h-10 rounded-full bg-cyan/20 flex items-center justify-center">
+            <i id="toast-icon" class="fa-solid fa-bell text-cyan text-xl"></i>
+        </div>
+        <div>
+            <h4 id="toast-title" class="font-bold text-white text-sm">Notification</h4>
+            <p id="toast-msg" class="text-xs text-bluegrey mt-1">Message goes here</p>
+        </div>
+    </div>
+
+    <script>
+        // --- DATA STRUCTURES (Deeply enhanced from al-khabar_2.pdf with Missing grammar points) ---
+        const MODULES = [
+            {
+                id: 'mod1',
+                title: 'Asas Pembentukan Ayat: Al-Mubtada & Al-Khabar',
+                desc: 'Fahami fungsi sebenar Khabar sebagai pelengkap makna.',
+                icon: 'fa-cubes',
+                content: `
+                    <div class="mb-8 reveal">
+                        <span class="bg-cyan/20 text-cyan px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest border border-cyan/30 shadow-[0_0_10px_rgba(56,217,245,0.3)]"><i class="fa-solid fa-rocket mr-2"></i> Modul 1</span>
+                        <h2 class="text-5xl font-black mt-6 mb-4 text-white">Asas Pembentukan Ayat</h2>
+                        <p class="text-xl text-bluegrey leading-relaxed">Dalam nahu Arab, <strong>الخبر (al-Khabar)</strong> ialah rukun asas kedua dalam <em>Jumlah Ismiyyah</em> yang menyempurnakan makna <strong>المبتدأ (al-Mubtada')</strong>.</p>
+                    </div>
+                    
+                    <div class="relative w-full h-64 md:h-80 mb-10 rounded-3xl overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.6)] border-2 border-ocean reveal">
+                        <img src="https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?auto=format&fit=crop&w=1200&q=80" alt="Study Environment" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/60 to-transparent"></div>
+                        <div class="absolute bottom-8 left-8 right-8">
+                            <h4 class="text-champagne font-black mb-2 text-2xl tracking-widest uppercase"><i class="fa-solid fa-link mr-2"></i> Struktur Emas Ayat Namaan</h4>
+                            <div class="flex flex-wrap items-center gap-4 text-3xl arabic-text font-bold" dir="rtl">
+                                <span class="bg-royalgold text-midnight px-6 py-2 rounded-xl shadow-[0_0_20px_rgba(214,174,82,0.5)]">الخَبَر</span>
+                                <span class="text-cyan font-sans text-3xl">+</span>
+                                <span class="bg-ocean/80 backdrop-blur-md text-white border border-cyan/50 px-6 py-2 rounded-xl">المُبْتَدَأ</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="text-3xl font-black mb-8 text-white flex items-center gap-3 reveal border-b border-ocean pb-4"><i class="fa-solid fa-microscope text-cyan"></i> Makmal Interaktif: Analisis Asas</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-8 reveal">
+                        <div class="glass-panel !border-t-4 !border-t-cyan p-8 rounded-2xl">
+                            <div class="arabic-text text-5xl mb-6 text-center text-white font-black drop-shadow-lg">الطَّالِبُ <span class="text-royalgold cyan-glow-text">مُجْتَهِدٌ</span></div>
+                            <p class="text-center text-xl text-bluegrey mb-6 italic">Pelajar itu rajin.</p>
+                            <div class="bg-midnight p-5 rounded-xl space-y-4 border border-ocean shadow-inner">
+                                <div class="flex justify-between items-center border-b border-ocean pb-3"><span class="text-cyan font-bold tracking-widest uppercase text-xs"><i class="fa-solid fa-tag mr-2"></i>المبتدأ</span> <span class="arabic-text text-2xl text-white">الطَّالِبُ</span></div>
+                                <div class="flex justify-between items-center pt-2"><span class="text-royalgold font-black tracking-widest uppercase text-xs"><i class="fa-solid fa-check-double mr-2"></i>الخبر</span> <span class="arabic-text text-2xl text-royalgold">مُجْتَهِدٌ</span></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-panel !border-t-4 !border-t-cyan p-8 rounded-2xl">
+                            <div class="arabic-text text-5xl mb-6 text-center text-white font-black drop-shadow-lg">الجَوُّ <span class="text-royalgold cyan-glow-text">جَمِيلٌ</span></div>
+                            <p class="text-center text-xl text-bluegrey mb-6 italic">Cuaca itu indah.</p>
+                            <div class="bg-midnight p-5 rounded-xl space-y-4 border border-ocean shadow-inner">
+                                <div class="flex justify-between items-center border-b border-ocean pb-3"><span class="text-cyan font-bold tracking-widest uppercase text-xs"><i class="fa-solid fa-tag mr-2"></i>المبتدأ</span> <span class="arabic-text text-2xl text-white">الجَوُّ</span></div>
+                                <div class="flex justify-between items-center pt-2"><span class="text-royalgold font-black tracking-widest uppercase text-xs"><i class="fa-solid fa-check-double mr-2"></i>الخبر</span> <span class="arabic-text text-2xl text-royalgold">جَمِيلٌ</span></div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'mod2',
+                title: 'أنواع الخبر (Jenis-Jenis Khabar)',
+                desc: 'Analisis mendalam bentuk Mufrad, Jumlah (Syarat Rabith) & Shibh Jumlah.',
+                icon: 'fa-sitemap',
+                content: `
+                    <div class="mb-8 reveal">
+                        <span class="bg-cyan/20 text-cyan px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest border border-cyan/30 shadow-[0_0_10px_rgba(56,217,245,0.3)]"><i class="fa-solid fa-layer-group mr-2"></i> Modul 2</span>
+                        <h2 class="text-4xl md:text-5xl font-black mt-6 mb-4 text-white">Bentuk-Bentuk <span class="arabic-text text-royalgold">الخبر</span></h2>
+                        <p class="text-xl text-bluegrey mb-6">Analisis mendalam berdasarkan rujukan "At-Tadbiq An-Nahwi". Klik setiap bahagian di bawah untuk kupasan terperinci.</p>
+                    </div>
+                    
+                    <div class="space-y-6 reveal">
+                        <!-- Accordion 1 -->
+                        <div class="glass-panel rounded-2xl overflow-hidden border-l-8 border-l-cyan transition-all hover:scale-[1.01]">
+                            <div class="accordion-header bg-navy/80 p-6 flex justify-between items-center hover:bg-navy transition-colors" onclick="toggleAccordion(this)">
+                                <h3 class="text-2xl font-black text-white arabic-text flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-full bg-cyan/20 text-cyan flex items-center justify-center font-sans text-xl shadow-[0_0_15px_rgba(56,217,245,0.4)]"><i class="fa-solid fa-1"></i></div> 
+                                    الخبر المفرد <span class="font-sans text-sm text-bluegrey font-medium tracking-wide bg-midnight px-3 py-1 rounded-full">(Bukan Ayat / Frasa)</span>
+                                </h3>
+                                <i class="fa-solid fa-chevron-down text-cyan text-xl"></i>
+                            </div>
+                            <div class="accordion-content px-6 pb-6 pt-2">
+                                <p class="text-base mb-6 text-bluegrey leading-relaxed">Istilah 'Mufrad' bermaksud ia <strong>bukan jumlah (ayat)</strong> dan bukan <strong>shibh jumlah</strong>. Ia terbahagi kepada dua jenis mengikut ilmu morfologi (Sarf):</p>
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div class="bg-midnight/80 p-6 rounded-xl border border-ocean hover:border-cyan/50 transition-colors">
+                                        <div class="text-xs bg-ocean inline-block px-3 py-1 rounded-full mb-4 text-white font-black tracking-widest"><i class="fa-solid fa-cube mr-2"></i>1. جامد (Jamid - Kata Dasar)</div>
+                                        <p class="arabic-text text-3xl text-royalgold text-right drop-shadow-md">الثَّوْبُ <span class="text-white underline decoration-cyan decoration-2 underline-offset-8">نَجْمٌ</span></p>
+                                        <p class="text-sm text-bluegrey text-right mt-2 font-medium">Pakaian itu ibarat bintang.</p>
+                                        <div class="mt-4 pt-4 border-t border-ocean text-sm text-cyan flex items-start gap-2">
+                                            <i class="fa-solid fa-circle-info mt-1"></i>
+                                            <p>Tiada dhamir tersembunyi di dalamnya kerana ia isim jamid (kaku/tidak berterbitan).</p>
+                                        </div>
+                                    </div>
+                                    <div class="bg-midnight/80 p-6 rounded-xl border border-ocean hover:border-champagne/50 transition-colors">
+                                        <div class="text-xs bg-royalgold inline-block px-3 py-1 rounded-full mb-4 text-midnight font-black tracking-widest"><i class="fa-solid fa-cubes mr-2"></i>2. مشتق (Mushtaq - Terbitan)</div>
+                                        <p class="arabic-text text-3xl text-royalgold text-right drop-shadow-md">زَيْدٌ <span class="text-white underline decoration-royalgold decoration-2 underline-offset-8">مُجْتَهِدٌ</span></p>
+                                        <p class="text-sm text-bluegrey text-right mt-2 font-medium">Zaid itu rajin.</p>
+                                        <div class="mt-4 pt-4 border-t border-ocean text-sm text-champagne flex items-start gap-2 font-bold">
+                                            <i class="fa-solid fa-eye-slash mt-1"></i>
+                                            <p>Mengandungi dhamir tersembunyi (مُجْتَهِدٌ هُوَ) yang merujuk kepada Zaid.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-6 bg-red-900/20 border border-red-500/30 p-4 rounded-xl text-base text-red-200 flex items-center gap-4">
+                                    <i class="fa-solid fa-triangle-exclamation text-3xl text-red-500"></i>
+                                    <p><strong>Awas:</strong> "الطُّلَّابُ مُجْتَهِدُونَ" (pelajar-pelajar itu rajin) MASIH dikira <strong>Khabar Mufrad</strong> kerana ia 1 perkataan (bukan struktur ayat), walaupun maknanya jamak.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Accordion 2: Jumlah -->
+                        <div class="glass-panel rounded-2xl overflow-hidden border-l-8 border-l-royalgold transition-all hover:scale-[1.01]">
+                            <div class="accordion-header bg-navy/80 p-6 flex justify-between items-center hover:bg-navy transition-colors" onclick="toggleAccordion(this)">
+                                <h3 class="text-2xl font-black text-white arabic-text flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-full bg-royalgold/20 text-royalgold flex items-center justify-center font-sans text-xl shadow-[0_0_15px_rgba(214,174,82,0.4)]"><i class="fa-solid fa-2"></i></div> 
+                                    الخبر جملة <span class="font-sans text-sm text-bluegrey font-medium tracking-wide bg-midnight px-3 py-1 rounded-full">(Ayat Namaan & Perbuatan)</span>
+                                </h3>
+                                <i class="fa-solid fa-chevron-down text-royalgold text-xl"></i>
+                            </div>
+                            <div class="accordion-content px-6 pb-6 pt-2">
+                                <p class="text-base mb-6 text-bluegrey leading-relaxed">Khabar boleh berbentuk ayat lengkap. Ia <strong>WAJIB mempunyai pengikat (الرابط)</strong> yang mengaitkannya kembali kepada Mubtada. Jika tiada Rabith, ia menjadi ayat asing yang tidak sah dijadikan Khabar.</p>
+                                
+                                <h4 class="font-black text-cyan mb-4 text-sm uppercase tracking-widest flex items-center gap-2"><i class="fa-solid fa-link"></i> Jenis-jenis Rabith (Pengikat):</h4>
+                                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                                    <div class="bg-midnight/80 p-5 rounded-xl border border-ocean">
+                                        <div class="text-sm font-bold text-champagne mb-3 text-right">1. الضمير (Dhamir - Paling Utama)</div>
+                                        <p class="arabic-text text-3xl text-white text-right">زَيْدٌ <span class="text-royalgold">خُلُقُ<span class="text-cyan underline decoration-cyan decoration-4">هُ</span> كَرِيمٌ</span></p>
+                                        <p class="text-sm text-bluegrey text-right mt-2">Zaid, akhlak<span class="text-cyan font-bold">nya</span> mulia.</p>
+                                        <div class="mt-3 text-xs text-cyan bg-ocean/30 p-2 rounded">Boleh juga dibuang jika difahami: العنب أقة منه بعشرين (Taqdir: بعشرين قرشاً).</div>
+                                    </div>
+                                    <div class="bg-midnight/80 p-5 rounded-xl border border-ocean">
+                                        <div class="text-sm font-bold text-champagne mb-3 text-right">2. إعادة المبتدأ بلفظه (Ulang Lafaz)</div>
+                                        <p class="arabic-text text-3xl text-white text-right">الحَاقَّةُ <span class="text-royalgold">مَا الحَاقَّةُ</span></p>
+                                        <p class="text-sm text-bluegrey text-right mt-2">Hari Kiamat, apakah Hari Kiamat itu?</p>
+                                        <div class="mt-3 text-xs text-cyan bg-ocean/30 p-2 rounded">Tujuan retorik: Tafkhim (membesarkan hal/kejadian).</div>
+                                    </div>
+                                    <div class="bg-midnight/80 p-5 rounded-xl border border-ocean">
+                                        <div class="text-sm font-bold text-champagne mb-3 text-right">3. الإشارة إلى المبتدأ (Isim Isharah)</div>
+                                        <p class="arabic-text text-3xl text-white text-right">النَّجَاحُ <span class="text-royalgold"><span class="text-cyan underline decoration-cyan decoration-4">ذَلِكَ</span> أَمَلُ كُلِّ طَالِبٍ</span></p>
+                                        <p class="text-sm text-bluegrey text-right mt-2">Kejayaan, <span class="text-cyan font-bold">itu</span> adalah harapan setiap pelajar.</p>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-ocean to-midnight p-5 rounded-xl border border-cyan/40 shadow-[0_0_15px_rgba(56,217,245,0.2)]">
+                                        <div class="text-sm font-black text-white mb-3 text-right"><i class="fa-solid fa-star text-royalgold mr-2"></i> الفائدة: الجملة الإنشائية</div>
+                                        <p class="arabic-text text-3xl text-white text-right">الكِتَابُ <span class="text-royalgold">اقْرَأْهُ</span></p>
+                                        <p class="text-sm text-bluegrey text-right mt-2">Buku itu, bacalah ia!</p>
+                                        <div class="mt-2 text-xs text-champagne font-bold">Ayat insha'iyyah (perintah/tanya) sah menjadi khabar!</div>
+                                    </div>
+                                </div>
+                                
+                                <h4 class="font-black text-royalgold mb-4 text-sm uppercase tracking-widest flex items-center gap-2 mt-8 border-t border-ocean pt-6"><i class="fa-solid fa-circle-exclamation"></i> Mubtada' yang WAJIB Khabarnya Jumlah:</h4>
+                                <p class="text-sm text-bluegrey mb-4">Dalam struktur nahu tertentu, khabar <strong>tidak boleh berbentuk mufrad</strong>, ia wajib dalam bentuk Jumlah (ayat). Menurut <em>At-Tadbiq An-Nahwi</em>, situasi ini berlaku pada:</p>
+                                
+                                <div class="space-y-4">
+                                    <div class="glass-panel p-4 border-l-4 border-l-cyan flex flex-col md:flex-row gap-4 items-center justify-between">
+                                        <div class="text-right w-full md:w-auto order-2 md:order-1">
+                                            <p class="arabic-text text-2xl text-white">مَنْ <span class="text-royalgold">يُذَاكِرْ يَنْجَحْ</span></p>
+                                            <p class="text-xs text-bluegrey mt-1">Sesiapa yang ulangkaji, dia berjaya.</p>
+                                        </div>
+                                        <div class="bg-midnight px-4 py-2 rounded-lg border border-ocean font-bold text-sm text-cyan order-1 md:order-2 w-full md:w-auto text-center md:text-left">1. Isim Syarat</div>
+                                    </div>
+                                    
+                                    <div class="glass-panel p-4 border-l-4 border-l-cyan flex flex-col md:flex-row gap-4 items-center justify-between">
+                                        <div class="text-right w-full md:w-auto order-2 md:order-1">
+                                            <p class="arabic-text text-2xl text-white">نَحْنُ - العَرَبَ - <span class="text-royalgold">نُكْرِمُ الضَّيْفَ</span></p>
+                                            <p class="text-xs text-bluegrey mt-1">Kami - orang Arab - memuliakan tetamu.</p>
+                                        </div>
+                                        <div class="bg-midnight px-4 py-2 rounded-lg border border-ocean font-bold text-sm text-cyan order-1 md:order-2 w-full md:w-auto text-center md:text-left">2. Uslub Al-Ikhtisas</div>
+                                    </div>
+
+                                    <div class="glass-panel p-4 border-l-4 border-l-cyan flex flex-col md:flex-row gap-4 items-center justify-between">
+                                        <div class="text-right w-full md:w-auto order-2 md:order-1">
+                                            <p class="arabic-text text-2xl text-white">خَالِدٌ <span class="text-royalgold">نِعْمَ القَائِدُ</span></p>
+                                            <p class="text-xs text-bluegrey mt-1">Khalid, sebaik-baik pemimpin.</p>
+                                        </div>
+                                        <div class="bg-midnight px-4 py-2 rounded-lg border border-ocean font-bold text-sm text-cyan order-1 md:order-2 w-full md:w-auto text-center md:text-left">3. Al-Makhsus bil Madh</div>
+                                    </div>
+
+                                    <div class="glass-panel p-4 border-l-4 border-l-cyan flex flex-col md:flex-row gap-4 items-center justify-between">
+                                        <div class="text-right w-full md:w-auto order-2 md:order-1">
+                                            <p class="arabic-text text-2xl text-white">كَمْ مِنْ مَرِيضٍ <span class="text-royalgold">شَفَاهُ اللَّهُ</span></p>
+                                            <p class="text-xs text-bluegrey mt-1">Berapa ramai pesakit yang disembuhkan Allah.</p>
+                                        </div>
+                                        <div class="bg-midnight px-4 py-2 rounded-lg border border-ocean font-bold text-sm text-cyan order-1 md:order-2 w-full md:w-auto text-center md:text-left">4. Kam Al-Khabariyyah</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Accordion 3 -->
+                        <div class="glass-panel rounded-2xl overflow-hidden border-l-8 border-l-green-400 transition-all hover:scale-[1.01]">
+                            <div class="accordion-header bg-navy/80 p-6 flex justify-between items-center hover:bg-navy transition-colors" onclick="toggleAccordion(this)">
+                                <h3 class="text-2xl font-black text-white arabic-text flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-full bg-green-400/20 text-green-400 flex items-center justify-center font-sans text-xl shadow-[0_0_15px_rgba(74,222,128,0.4)]"><i class="fa-solid fa-3"></i></div> 
+                                    الخبر شبه الجملة <span class="font-sans text-sm text-bluegrey font-medium tracking-wide bg-midnight px-3 py-1 rounded-full">(Zharf & Jar Majrur)</span>
+                                </h3>
+                                <i class="fa-solid fa-chevron-down text-green-400 text-xl"></i>
+                            </div>
+                            <div class="accordion-content px-6 pb-6 pt-2">
+                                <p class="text-base mb-6 text-bluegrey leading-relaxed">Menurut ulama silam, Shibh Jumlah (Zharf/Jar Majrur) itu sendiri bukanlah Khabar. Ia sebenarnya <strong>tergantung (متعلق)</strong> kepada perkataan Khabar yang tersembunyi seperti (موجود - wujud) atau (مستقر - menetap). Ini dipanggil <strong>كَوْن عَام (Kewujudan Mutlak)</strong>.</p>
+                                
+                                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                                    <div class="bg-midnight/80 p-6 rounded-xl border border-ocean">
+                                        <div class="text-sm font-bold text-green-400 mb-3 text-right">جار ومجرور (Jar & Majrur)</div>
+                                        <p class="arabic-text text-3xl text-white text-right">الطَّالِبُ <span class="text-green-400 font-bold bg-green-400/10 px-2 rounded">فِي الفَصْلِ</span></p>
+                                        <p class="text-sm text-bluegrey text-right mt-3">Taqdir: الطالب <span class="text-royalgold font-black bg-royalgold/20 px-2 rounded">موجود</span> في الفصل</p>
+                                    </div>
+                                    <div class="bg-red-900/30 p-6 rounded-xl border border-red-500/40">
+                                        <div class="text-sm font-bold text-red-400 mb-3 text-right"><i class="fa-solid fa-triangle-exclamation mr-2"></i> Awas: كَوْن خَاص (Kewujudan Spesifik)</div>
+                                        <p class="arabic-text text-3xl text-white text-right">زَيْدٌ <span class="text-red-400 underline decoration-red-400 decoration-4 font-black">نَائِمٌ</span> فِي البَيْتِ</p>
+                                        <p class="text-sm text-red-200 text-right mt-3">Jika anda bermaksud Zaid sedang <em>tidur</em>, anda WAJIB menyebut perkataan 'نَائِمٌ'. Anda tak boleh buang dan hanya cakap 'Zaid di rumah'.</p>
+                                    </div>
+                                </div>
+                                <div class="mt-4 bg-gradient-to-r from-royalgold/20 to-transparent border-l-4 border-royalgold p-6 rounded-r-xl">
+                                    <h4 class="text-champagne font-black mb-3 text-lg"><i class="fa-solid fa-clock mr-2 text-xl"></i> Hukum Zharf Zaman (Masa)</h4>
+                                    <p class="text-base text-bluegrey mb-4">Zharf Zaman HANYA boleh menjadi khabar kepada <strong>Asma' al-Ahdath (Perbuatan/Kejadian)</strong>, bukan Asma' al-Zawat (Entiti fizikal).</p>
+                                    <ul class="text-base space-y-4 text-white">
+                                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-green-400 mt-1 text-xl"></i> <div><strong>Betul:</strong> <span class="arabic-text text-2xl text-royalgold bg-midnight px-2 rounded ml-2">السَّوْمُ يَوْمَ الخَمِيسِ</span> <br><span class="text-sm text-bluegrey">Puasa itu hari Khamis (Puasa ialah kejadian).</span></div></li>
+                                        <li class="flex items-start gap-3"><i class="fa-solid fa-times text-red-400 mt-1 text-xl"></i> <div><strong>Salah:</strong> <span class="arabic-text text-2xl text-red-400 bg-midnight px-2 rounded ml-2">مُحَمَّدٌ اليَوْمَ</span> <br><span class="text-sm text-bluegrey">Muhammad hari ini (Muhammad ialah zat fizikal).</span></div></li>
+                                        <li class="flex items-start gap-3"><i class="fa-solid fa-star text-cyan mt-1 text-xl"></i> <div><strong>Pengecualian (Ta'wil):</strong> <span class="arabic-text text-2xl text-cyan bg-midnight px-2 rounded ml-2">الهَلَالُ اللَّيْلَةَ</span> <br><span class="text-sm text-bluegrey">Dibenarkan kerana maknanya ditafsirkan sebagai perbuatan: (رُؤْيَةُ الهَلَالِ اللَّيْلَةَ - Pelihatannya malam ini).</span></div></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'mod3',
+                title: 'Berbilang Khabar & Penggunaan "Fa"',
+                desc: 'Bolehkah satu Mubtada mempunyai banyak Khabar? Bila "Fa" digunakan?',
+                icon: 'fa-link',
+                content: `
+                    <div class="mb-10 reveal">
+                        <span class="bg-cyan/20 text-cyan px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest border border-cyan/30"><i class="fa-solid fa-object-ungroup mr-2"></i> Modul 3</span>
+                        <h2 class="text-5xl font-black mt-6 mb-4 text-white">Ta'addud & Iqtiran bil-Fa'</h2>
+                    </div>
+
+                    <div class="grid lg:grid-cols-12 gap-8 reveal mb-12">
+                        <div class="lg:col-span-7">
+                            <h3 class="text-3xl font-black mb-4 text-champagne"><i class="fa-solid fa-layer-group mr-3"></i> 1. تعدد الخبر (Berbilang Khabar)</h3>
+                            <p class="text-bluegrey text-lg mb-6 leading-relaxed">Satu Mubtada boleh mempunyai lebih daripada satu khabar jika ia tidak dikira sebagai kata sifat (Na'at) kepada khabar pertama, dan setiap khabar boleh berdiri sendiri mensifatkan Mubtada.</p>
+                            
+                            <div class="glass-panel p-8 rounded-2xl border-l-8 border-l-cyan">
+                                <p class="arabic-text text-4xl text-right text-white mb-6 drop-shadow-md">زَيْدٌ <span class="text-cyan bg-cyan/10 px-2 rounded">عَرَبِيٌّ</span> <span class="text-royalgold bg-royalgold/10 px-2 rounded">شُجَاعٌ</span> <span class="text-green-400 bg-green-400/10 px-2 rounded">كَرِيمٌ</span></p>
+                                <ul class="text-lg space-y-3 text-right arabic-text border-t border-ocean pt-6 font-bold">
+                                    <li class="flex justify-end items-center gap-4"><span class="text-white bg-midnight px-3 py-1 rounded border border-ocean font-sans text-sm">Mubtada</span> زَيْدٌ</li>
+                                    <li class="text-cyan flex justify-end items-center gap-4"><span class="text-cyan bg-midnight px-3 py-1 rounded border border-ocean font-sans text-sm">Khabar 1</span> عَرَبِيٌّ</li>
+                                    <li class="text-royalgold flex justify-end items-center gap-4"><span class="text-royalgold bg-midnight px-3 py-1 rounded border border-ocean font-sans text-sm">Khabar 2</span> شُجَاعٌ</li>
+                                    <li class="text-green-400 flex justify-end items-center gap-4"><span class="text-green-400 bg-midnight px-3 py-1 rounded border border-ocean font-sans text-sm">Khabar 3</span> كَرِيمٌ</li>
+                                </ul>
+                                <div class="mt-6 bg-red-900/40 p-4 rounded-xl text-base text-red-200 border border-red-500/40 flex gap-4 items-start">
+                                    <i class="fa-solid fa-ban text-2xl text-red-500 mt-1"></i>
+                                    <p><strong>Awas:</strong> Anda TIDAK BOLEH berkata <span class="arabic-text text-xl font-bold bg-midnight px-1 rounded">التَّعْلِيمُ أَدَبِيٌّ هَنْدَسِيٌّ تِجَارِيٌّ</span> tanpa huruf Waw ('Ataf) kerana pendidikan yang sama tidak boleh menjadi ketiga-tiganya serentak (mustahil secara logik).</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-5 hidden lg:block">
+                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" alt="Abstract Layering" class="premium-img w-full h-full object-cover">
+                        </div>
+                    </div>
+
+                    <div class="reveal">
+                        <h3 class="text-3xl font-black mb-6 text-champagne border-t border-ocean pt-8"><i class="fa-solid fa-plus mr-3"></i> 2. اقتران الخبر بالفاء (Khabar masuk 'Fa')</h3>
+                        <p class="text-bluegrey text-lg mb-6 leading-relaxed">Huruf الفاء lazimnya mengaitkan sebab-akibat. Ia boleh masuk ke pangkal Khabar untuk menguatkan hubungan (menyerupai gaya Syarat & Jawab). Syaratnya:</p>
+                        
+                        <div class="grid md:grid-cols-3 gap-4 mb-8">
+                            <div class="bg-midnight p-5 rounded-xl border border-ocean shadow-inner text-center">
+                                <div class="w-10 h-10 bg-ocean rounded-full flex items-center justify-center mx-auto mb-3 text-cyan font-black">1</div>
+                                <p class="text-sm text-white font-bold">Mubtada bersifat umum (Isim Mausul / Nakirah).</p>
+                            </div>
+                            <div class="bg-midnight p-5 rounded-xl border border-ocean shadow-inner text-center">
+                                <div class="w-10 h-10 bg-ocean rounded-full flex items-center justify-center mx-auto mb-3 text-cyan font-black">2</div>
+                                <p class="text-sm text-white font-bold">Terdapat jumlah/shibh jumlah di antara mereka.</p>
+                            </div>
+                            <div class="bg-midnight p-5 rounded-xl border border-ocean shadow-inner text-center">
+                                <div class="w-10 h-10 bg-ocean rounded-full flex items-center justify-center mx-auto mb-3 text-cyan font-black">3</div>
+                                <p class="text-sm text-white font-bold">Khabar adalah natijah/akibat (mutarattib).</p>
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div class="bg-midnight/80 p-8 rounded-2xl border border-ocean relative shadow-lg hover:border-cyan transition-colors">
+                                <div class="absolute -top-4 -left-4 w-16 h-16 bg-cyan/20 rounded-full blur-xl"></div>
+                                <div class="absolute top-4 left-4 text-xs bg-ocean text-white font-black px-3 py-1 rounded-full uppercase tracking-widest"><i class="fa-solid fa-unlock mr-2"></i>JAIZ (Harus)</div>
+                                <p class="arabic-text text-4xl text-white text-right mt-8 mb-4 drop-shadow-md">الَّذِي يَجْتَهِدُ <span class="text-royalgold font-black border-b-4 border-royalgold pb-1">فَ</span>نَاجِحٌ</p>
+                                <p class="text-base text-bluegrey text-right font-medium">Sesiapa yang berusaha, <span class="text-royalgold font-bold">maka</span> dia berjaya.</p>
+                                <div class="mt-4 bg-ocean/30 p-3 rounded-lg text-sm text-cyan text-right">
+                                    "Alladzi" (Umum) ➔ "Yajtahidu" (Jumlah/Syarat) ➔ "Fa-Najihun" (Natijah).
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gradient-to-br from-navy to-midnight p-8 rounded-2xl border-2 border-royalgold relative shadow-[0_0_30px_rgba(214,174,82,0.2)] hover:-translate-y-1 transition-transform">
+                                <div class="absolute -top-4 -left-4 w-16 h-16 bg-royalgold/20 rounded-full blur-xl"></div>
+                                <div class="absolute top-4 left-4 text-xs bg-royalgold text-midnight font-black px-3 py-1 rounded-full uppercase tracking-widest shadow-lg"><i class="fa-solid fa-lock mr-2"></i>WAJIB</div>
+                                <p class="arabic-text text-4xl text-white text-right mt-8 mb-4 drop-shadow-md">أَمَّا عَلِيٌّ <span class="text-royalgold font-black border-b-4 border-royalgold pb-1">فَ</span>كَرِيمٌ</p>
+                                <p class="text-base text-bluegrey text-right font-medium">Adapun Ali, <span class="text-royalgold font-bold">maka</span> dia mulia.</p>
+                                <div class="mt-4 bg-royalgold/10 p-3 rounded-lg text-sm text-champagne text-right font-bold">
+                                    Jika Khabar terletak selepas <strong>Huruf Syarat (أَمَّا)</strong>, khabarnya WAJIB diletakkan 'Fa'.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'mod4',
+                title: 'حذف الخبر (Pengguguran Khabar)',
+                desc: 'Rahsia bahasa: Bila Khabar harus & wajib disembunyikan?',
+                icon: 'fa-eraser',
+                content: `
+                    <div class="mb-10 reveal">
+                        <span class="bg-cyan/20 text-cyan px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest border border-cyan/30"><i class="fa-solid fa-ghost mr-2"></i> Modul 4</span>
+                        <h2 class="text-5xl font-black mt-6 mb-4 text-white">Seni Sembunyian: حذف الخبر</h2>
+                        <p class="text-bluegrey text-lg leading-relaxed">Dalam nahu, membuang perkataan yang sudah difahami adalah satu keindahan retorik. Namun, ada undang-undang yang ketat mengawal penggugurannya.</p>
+                    </div>
+
+                    <div class="space-y-8 reveal">
+                        <!-- Jawazan -->
+                        <div class="glass-panel p-8 rounded-3xl border-2 border-cyan/50 relative overflow-hidden">
+                            <div class="absolute -right-20 -top-20 text-[15rem] text-cyan/5 opacity-20 font-black arabic-text">ج</div>
+                            <h3 class="text-2xl font-black mb-6 text-cyan border-b border-cyan/30 pb-4 flex items-center gap-3"><i class="fa-solid fa-unlock-keyhole"></i> 1. الحذف الجائز (Gugur yang Diharuskan)</h3>
+                            <p class="text-base text-bluegrey mb-6">Jika terdapat petunjuk (dalil) maqali (konteks ayat). Dua situasi utama:</p>
+                            
+                            <div class="grid md:grid-cols-2 gap-6 relative z-10">
+                                <div class="bg-midnight/90 p-6 rounded-2xl border border-ocean hover:border-cyan transition-colors">
+                                    <div class="text-sm text-cyan font-bold mb-4 uppercase tracking-widest"><i class="fa-solid fa-comments mr-2"></i> A. Jawapan kepada Soalan</div>
+                                    <div class="text-2xl text-white font-black text-right arabic-text bg-navy p-3 rounded-lg mb-2">مَنْ مُخْلِصٌ؟</div>
+                                    <i class="fa-solid fa-arrow-down text-bluegrey my-3 text-center w-full block text-xl"></i>
+                                    <div class="text-right bg-ocean/20 p-4 rounded-lg border border-cyan/20">
+                                        <span class="text-4xl text-royalgold font-black arabic-text drop-shadow-md">عَلِيٌّ</span>
+                                        <div class="text-sm text-bluegrey mt-3">Taqdir: عليّ <span class="line-through text-red-400 font-bold arabic-text text-xl ml-2">مُخْلِصٌ</span></div>
+                                    </div>
+                                </div>
+                                <div class="bg-midnight/90 p-6 rounded-2xl border border-ocean hover:border-cyan transition-colors">
+                                    <div class="text-sm text-cyan font-bold mb-4 uppercase tracking-widest"><i class="fa-solid fa-bolt mr-2"></i> B. Selepas 'Idza' Fuja'iyyah</div>
+                                    <div class="text-3xl text-white text-right arabic-text mb-4 mt-6 leading-relaxed">خَرَجْتُ فَإِذَا صَدِيقِي</div>
+                                    <p class="text-sm text-bluegrey text-right font-medium">Aku keluar, tiba-tiba kawanku...</p>
+                                    <div class="text-right mt-6 border-t border-ocean pt-4">
+                                        <span class="text-sm text-bluegrey">Taqdir: فإذا صديقي <span class="text-royalgold font-black arabic-text text-2xl mr-2">مَوْجُودٌ / مُنْتَظِرٌ</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Wujuban -->
+                        <div class="glass-panel p-8 rounded-3xl border-4 border-royalgold relative overflow-hidden shadow-[0_0_40px_rgba(214,174,82,0.2)]">
+                            <div class="absolute -right-20 -bottom-20 text-[15rem] text-royalgold/5 opacity-20 font-black arabic-text">و</div>
+                            <h3 class="text-2xl font-black mb-6 text-royalgold border-b border-royalgold/30 pb-4 flex items-center gap-3 relative z-10"><i class="fa-solid fa-lock"></i> 2. الحذف الواجب (Gugur yang Diwajibkan)</h3>
+                            <p class="text-base text-white mb-8 relative z-10 font-medium">Tempat-tempat spesifik di mana struktur Arab mengharamkan kita menyebut Khabar.</p>
+                            
+                            <div class="space-y-6 relative z-10">
+                                <div class="bg-midnight/90 p-6 rounded-2xl border border-ocean">
+                                    <h4 class="font-black text-champagne mb-3 text-lg"><i class="fa-solid fa-circle-exclamation mr-2 text-royalgold"></i> A. Selepas لَوْلا (Lawla - Jikalau tidak kerana)</h4>
+                                    <p class="text-sm text-bluegrey mb-4 bg-ocean/30 p-2 rounded">SYARAT UTAMA: Khabar itu bermaksud "kewujudan mutlak" (كون عام - seperti wujud/ada).</p>
+                                    <p class="arabic-text text-4xl text-right text-white drop-shadow-md">لَوْلَا العَقْلُ لَضَاعَ الإِنْسَانُ</p>
+                                    <p class="text-base text-right mt-4 text-cyan bg-midnight p-3 rounded-lg border border-cyan/20">Taqdir: لولا العقلُ <span class="text-royalgold underline decoration-royalgold decoration-2 font-black arabic-text text-2xl mr-2">مَوْجُودٌ</span></p>
+                                    <div class="mt-4 bg-red-900/40 p-4 rounded-xl text-sm text-red-200 border border-red-500/40">
+                                        <strong class="text-red-400">Pengecualian (Kawn Khas):</strong> Jika ia kewujudan spesifik (sifat khas), Khabar <strong>WAJIB disebut</strong>.<br><br>
+                                        <span class="arabic-text text-2xl bg-midnight px-2 rounded block text-right mt-1 mb-2">لَوْلَا اللاعِبُونَ <span class="font-black text-white underline decoration-red-400 decoration-4">مَاهِرُونَ</span> مَا فَازَ الفَرِيقُ</span>
+                                        Jika anda buang 'mahirun', maksudnya jadi 'jika pemain tak wujud', sedangkan maksud asal ialah 'jika pemain tak mahir'.
+                                    </div>
+                                </div>
+
+                                <div class="bg-midnight/90 p-6 rounded-2xl border border-ocean">
+                                    <h4 class="font-black text-champagne mb-3 text-lg"><i class="fa-solid fa-hand-sparkles mr-2 text-royalgold"></i> B. Dalam Kata Sumpah Nyata (صريح القسم)</h4>
+                                    <p class="text-sm text-bluegrey mb-4">Apabila Mubtada jelas menunjukkan lafaz sumpah yang spesifik.</p>
+                                    <p class="arabic-text text-4xl text-right text-white drop-shadow-md">لَعَمْرُكَ لَيَنْجَحَنَّ المَجْدُ</p>
+                                    <p class="text-base text-right mt-4 text-cyan bg-midnight p-3 rounded-lg border border-cyan/20">Taqdir: لعمرك <span class="text-royalgold underline decoration-royalgold decoration-2 font-black arabic-text text-2xl mr-2">قَسَمِي</span> (Demi umurmu, ia adalah sumpahku...)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'mod5',
+                title: 'تأخير وتقديم الخبر',
+                desc: 'Undang-undang susun atur: 8 Tempat Wajib Ta\'khir, 4 Tempat Wajib Taqdim.',
+                icon: 'fa-arrow-right-arrow-left',
+                content: `
+                    <div class="mb-10 reveal">
+                        <span class="bg-cyan/20 text-cyan px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest border border-cyan/30"><i class="fa-solid fa-code-compare mr-2"></i> Modul 5</span>
+                        <h2 class="text-5xl font-black mt-6 mb-4 text-white">Word Order Mastery</h2>
+                        <p class="text-bluegrey text-lg leading-relaxed">Susunan asal ialah Mubtada di depan, Khabar di belakang (Jawaz/Harus ditukar dalam keadaan biasa spt <span class="arabic-text">زيد قادم / قادم زيد</span>). Namun, <em>At-Tadbiq An-Nahwi</em> menetapkan keadaan WAJIB secara mutlak.</p>
+                    </div>
+
+                    <div class="grid xl:grid-cols-2 gap-8 reveal">
+                        <!-- Wajib Ta'khir (8 Points) -->
+                        <div class="glass-panel p-8 rounded-3xl border-t-8 border-t-ocean relative shadow-lg">
+                            <div class="absolute -top-5 right-6 bg-ocean text-white font-black px-4 py-2 rounded-full text-sm shadow-[0_5px_15px_rgba(11,79,113,0.6)] border-2 border-midnight flex items-center gap-2"><i class="fa-solid fa-arrow-left"></i> WAJIB DI BELAKANG</div>
+                            <h3 class="text-3xl font-black text-white mb-6 mt-4 arabic-text text-center bg-midnight py-3 rounded-xl border border-ocean">تأخير الخبر وجوباً</h3>
+                            <ul class="space-y-4 text-base">
+                                <li class="bg-midnight/80 p-4 rounded-xl border border-ocean/50 hover:border-cyan transition-colors">
+                                    <span class="text-cyan font-bold block mb-2"><i class="fa-solid fa-1 mr-2 text-xs"></i> Mubtada ada hak Sadarah (Hak di depan)</span>
+                                    <span class="text-xs text-bluegrey mb-2 block bg-ocean/20 p-1 rounded inline-block">Spt: Istifham, Shart, Ma Ta'ajjub, Kam Khabariyyah</span>
+                                    <span class="arabic-text text-2xl block text-right text-white">مَنْ فَعَلَ هَذَا؟ / مَا أَكْرَمَ العَرَبِيَّ!</span>
+                                </li>
+                                <li class="bg-midnight/80 p-4 rounded-xl border border-ocean/50 hover:border-cyan transition-colors">
+                                    <span class="text-cyan font-bold block mb-2"><i class="fa-solid fa-2 mr-2 text-xs"></i> Mubtada bermula Lam Ibtida'</span>
+                                    <span class="arabic-text text-2xl block text-right text-white">لَلْمَجْدُ نَاجِحٌ</span>
+                                </li>
+                                <li class="bg-midnight/80 p-4 rounded-xl border border-ocean/50 hover:border-cyan transition-colors">
+                                    <span class="text-cyan font-bold block mb-2"><i class="fa-solid fa-3 mr-2 text-xs"></i> Khabar ialah Jumlah Fi'liyyah</span>
+                                    <span class="arabic-text text-2xl block text-right text-white mb-1">زَيْدٌ يَلْعَبُ</span>
+                                    <span class="text-xs text-bluegrey block text-right">Jika diterbalikkan (يلعب زيد) ia jadi Fi'il+Fa'il.</span>
+                                </li>
+                                <li class="bg-midnight/80 p-4 rounded-xl border border-ocean/50 hover:border-cyan transition-colors">
+                                    <span class="text-cyan font-bold block mb-2"><i class="fa-solid fa-4 mr-2 text-xs"></i> Mubtada & Khabar sama taraf (cth: dua-dua Ma'rifah)</span>
+                                    <span class="arabic-text text-2xl block text-right text-white mb-1">أَخِي صَدِيقِي</span>
+                                    <span class="text-xs text-bluegrey block text-right bg-ocean/20 p-1 rounded">Perkataan pertama automatik dianggap Mubtada.</span>
+                                </li>
+                                <li class="bg-midnight/80 p-4 rounded-xl border border-ocean/50 hover:border-cyan transition-colors">
+                                    <span class="text-cyan font-bold block mb-2"><i class="fa-solid fa-5 mr-2 text-xs"></i> Mubtada dikhususkan (Qasr) dlm Khabar</span>
+                                    <span class="arabic-text text-2xl block text-right text-white">إِنَّمَا مُحَمَّدٌ رَسُولٌ</span>
+                                </li>
+                                <li class="bg-midnight/80 p-4 rounded-xl border border-ocean/50 hover:border-cyan transition-colors">
+                                    <span class="text-cyan font-bold block mb-2"><i class="fa-solid fa-6 mr-2 text-xs"></i> Khabar dikaitkan dengan Fa'</span>
+                                    <span class="arabic-text text-2xl block text-right text-white">الَّذِي يَجْتَهِدُ فَنَاجِحٌ</span>
+                                </li>
+                                <li class="bg-midnight/80 p-4 rounded-xl border border-ocean/50 hover:border-cyan transition-colors">
+                                    <span class="text-cyan font-bold block mb-2"><i class="fa-solid fa-7 mr-2 text-xs"></i> Khabar kepada Dhamir Shaan</span>
+                                    <span class="arabic-text text-2xl block text-right text-white">قُلْ هُوَ اللَّهُ أَحَدٌ</span>
+                                </li>
+                                <li class="bg-midnight/80 p-4 rounded-xl border border-ocean/50 hover:border-cyan transition-colors">
+                                    <span class="text-cyan font-bold block mb-2"><i class="fa-solid fa-8 mr-2 text-xs"></i> Dipisahkan oleh Dhamir Fasl</span>
+                                    <span class="arabic-text text-2xl block text-right text-white">اللَّهُ هُوَ الكَرِيمُ</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Wajib Taqdim (4 Points) -->
+                        <div class="glass-panel p-8 rounded-3xl border-t-8 border-t-royalgold relative shadow-[0_0_30px_rgba(214,174,82,0.15)] mt-8 xl:mt-0">
+                            <div class="absolute -top-5 right-6 bg-royalgold text-midnight font-black px-4 py-2 rounded-full text-sm shadow-[0_5px_15px_rgba(214,174,82,0.6)] border-2 border-midnight flex items-center gap-2"><i class="fa-solid fa-arrow-right"></i> WAJIB DI HADAPAN</div>
+                            <h3 class="text-3xl font-black text-champagne mb-6 mt-4 arabic-text text-center bg-midnight py-3 rounded-xl border border-royalgold/30">تقديم الخبر وجوباً</h3>
+                            <ul class="space-y-4 text-base">
+                                <li class="bg-gradient-to-l from-midnight to-navy p-5 rounded-xl border border-royalgold/40 hover:border-champagne transition-colors">
+                                    <span class="text-champagne font-black block mb-3"><i class="fa-solid fa-star mr-2 text-xs"></i> 1. Khabar ada hak Sadarah (Isim Istifham)</span>
+                                    <span class="arabic-text text-3xl block text-right text-white mb-2">أَيْنَ بَيْتُكَ؟ / مَتَى السَّفَرُ؟</span>
+                                    <span class="text-sm text-bluegrey block text-right bg-midnight p-2 rounded">Kata tanya 'di mana/bila' wajib di depan.</span>
+                                </li>
+                                <li class="bg-gradient-to-l from-midnight to-navy p-5 rounded-xl border border-royalgold/40 hover:border-champagne transition-colors">
+                                    <span class="text-champagne font-black block mb-3"><i class="fa-solid fa-star mr-2 text-xs"></i> 2. Khabar dikhususkan (Qasr) dlm Mubtada</span>
+                                    <span class="arabic-text text-3xl block text-right text-white mb-2">مَا نَاجِحٌ إِلَّا المَجْدُ</span>
+                                    <span class="text-sm text-bluegrey block text-right bg-midnight p-2 rounded">Hanya si rajin yg berjaya. (Khabar: Najih).</span>
+                                </li>
+                                <li class="bg-gradient-to-l from-midnight to-navy p-5 rounded-xl border border-royalgold/40 hover:border-champagne transition-colors">
+                                    <span class="text-champagne font-black block mb-3"><i class="fa-solid fa-star mr-2 text-xs"></i> 3. Mubtada Nakirah murni & Khabar Shibh Jumlah</span>
+                                    <span class="arabic-text text-3xl block text-right text-white mb-2">فِي الفَصْلِ <span class="text-cyan underline decoration-cyan decoration-4 font-black">طَالِبٌ</span></span>
+                                    <span class="text-sm text-bluegrey block text-right bg-midnight p-2 rounded">Jika Nakirah di depan (طالب في الفصل), ia dianggap adjektif (pelajar yang berada di kelas), bukan ayat lengkap.</span>
+                                </li>
+                                <li class="bg-gradient-to-l from-midnight to-navy p-5 rounded-xl border border-royalgold/40 hover:border-champagne transition-colors">
+                                    <span class="text-champagne font-black block mb-3"><i class="fa-solid fa-star mr-2 text-xs"></i> 4. Pada Mubtada ada Dhamir merujuk kpd Khabar</span>
+                                    <span class="arabic-text text-3xl block text-right text-white mb-2">فِي البَيْتِ أَهْلُ<span class="text-cyan font-black text-4xl">هُ</span></span>
+                                    <span class="text-sm text-bluegrey block text-right bg-midnight p-2 rounded">Dhamir 'hu' merujuk kpd Bait. Arab melarang dhamir merujuk kepada sesuatu yang belum disebut secara lafaz dan kedudukan.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            }
+        ];
+
+        // --- ENHANCED ARENA QUESTIONS (40 Qs Deep Dive based heavily on At-Tadbiq An-Nahwi, including ALL missing exercises) ---
+        const ARENA_QUESTIONS = [
+            // Section 1: Mufrad & Jamid/Mushtaq
+            { q: "Perkataan 'نجم' dalam ayat الثَّوْبُ نَجْمٌ dikategorikan sebagai:", options: ["الخبر المفرد الجامد (Tiada Dhamir di dalamnya)", "الخبر المفرد المشتق (Ada Dhamir)", "الخبر جملة"], a: 0 },
+            { q: "Perkataan 'مُجْتَهِدٌ' dalam ayat زَيْدٌ مُجْتَهِدٌ dikategorikan sebagai:", options: ["الخبر المفرد الجامد", "الخبر المفرد المشتق (Menyembunyikan Dhamir 'Huwa')", "الخبر الجملة الفعلية"], a: 1 },
+            { q: "Ayat 'الطُّلَّابُ مُجْتَهِدُونَ', apakah jenis khabar bagi 'مُجْتَهِدُونَ'?", options: ["جملة اسمية", "الخبر المفرد (Satu perkataan, bukan struktur ayat)", "شبه جملة"], a: 1 },
+            
+            // Section 2: Rabith / Pengikat
+            { q: "Dalam Khabar bentuk Jumlah, ia WAJIB mempunyai...", options: ["الرابط (Pengikat yang merujuk kembali kpd Mubtada)", "Huruf Fa'", "Kata Tanya"], a: 0 },
+            { q: "Ayat 'الحَاقَّةُ مَا الحَاقَّةُ'. Apakah bentuk Rabith (Pengikat) dalam khabar jumlah ini?", options: ["Dhamir tersembunyi", "إعادة المبتدأ بلفظه (Pengulangan Mubtada secara lafaz)", "Isim Isharah"], a: 1 },
+            { q: "Ayat 'النَّجَاحُ ذَلِكَ أَمَلُ كُلِّ طَالِبٍ'. Apakah jenis Rabithnya?", options: ["Dhamir tersembunyi", "الإشارة إلى المبتدأ (Isim Isharah - ذَلِكَ)", "Pengulangan lafaz"], a: 1 },
+            { q: "Bolehkah Rabith (Dhamir) digugurkan jika maknanya sudah maklum (cth: العنب أقة منه بعشرين)?", options: ["Boleh (Taqdir: بعشرين قرشاً)", "Wajib ditulis di lafaz", "Haram"], a: 0 },
+            { q: "Ayat 'الكِتَابُ اقْرَأْهُ'. Adakah boleh jumlah insha'iyyah (arahan/perintah) menjadi khabar?", options: ["Ya, sah dan boleh", "Tidak boleh sama sekali"], a: 0 },
+            
+            // MISSING SECTION ADDED: Wajib Khabar Jumlah
+            { q: "Terdapat jenis Mubtada yang khabarnya WAJIB berbentuk Jumlah. Antaranya ialah:", options: ["Isim Mausul", "Isim Syarat (cth: مَنْ يُذَاكِرْ يَنْجَحْ)", "Isim Alam"], a: 1 },
+            { q: "Dalam Uslub Al-Ikhtisas (نَحْنُ - العَرَبَ - نُكْرِمُ الضَّيْفَ), khabar mestilah dalam bentuk:", options: ["Mufrad", "Jumlah (cth: نُكْرِمُ الضَّيْفَ)"], a: 1 },
+            { q: "Ayat 'كَمْ مِنْ مَرِيضٍ شَفَاهُ اللَّهُ'. Apakah jenis Khabar bagi Kam Al-Khabariyyah ini?", options: ["الخبر المفرد", "الخبر الجملة الفعلية (شَفَاهُ اللَّهُ)"], a: 1 },
+            
+            // Section 3: Shibh Jumlah & Zharf
+            { q: "Menurut ulama tradisional, Shibh Jumlah (Zharf/Jar Majrur) di tempat khabar sebenarnya:", options: ["Itulah khabar sebenar-benarnya", "Ia tergantung (متعلق) kepada khabar tersembunyi berkonsep Kawn Aam (cth: موجود/مستقر)"], a: 1 },
+            { q: "Ayat 'مُحَمَّدٌ اليَوْمَ'. Bolehkah Zharf Zaman (Masa) menjadi khabar kepada Isim Zhat (Entiti Fizikal)?", options: ["Boleh", "TIDAK BOLEH, Zharf Zaman hanya untuk Asma' al-Ahdath (Perbuatan/Kejadian)"], a: 1 },
+            { q: "Ayat 'السَّوْمُ يَوْمَ الخَمِيسِ'. Adakah susunan ini sah?", options: ["Sah (Puasa adalah perbuatan/kejadian)", "Tidak Sah"], a: 0 },
+            { q: "Bagaimana ayat 'الهَلَالُ اللَّيْلَةَ' (Anak bulan itu malam ini) dibenarkan?", options: ["Kerana ia ditakwilkan kepada perbuatan: (رُؤْيَةُ الهَلَالِ اللَّيْلَةَ - Pelihatannya malam ini)", "Kerana Hilal itu masa"], a: 0 },
+            { q: "Ayat 'زَيْدٌ نَائِمٌ فِي البَيْتِ'. Bolehkah kita buang perkataan 'نَائِمٌ' (Kawn Khas) dan hanya kata 'زَيْدٌ فِي البَيْتِ' jika kita khusus maksudkan dia sedang tidur tanpa ada dalil?", options: ["Boleh", "TIDAK BOLEH, Kawn Khas wajib disebut jika tiada dalil"], a: 1 },
+            
+            // Section 4: Ta'addud Al-Khabar
+            { q: "Dalam ayat 'زَيْدٌ عَرَبِيٌّ شُجَاعٌ كَرِيمٌ', berapakah bilangan khabar kepada Zaid?", options: ["Satu khabar, yang lain sifat", "Tiga (Ta'addud Al-Khabar)"], a: 1 },
+            { q: "Bolehkah kita membuat Ta'addud Khabar 'التَّعْلِيمُ أَدَبِيٌّ هَنْدَسِيٌّ تِجَارِيٌّ' tanpa huruf 'Waw'?", options: ["Boleh", "TIDAK BOLEH, kerana maknanya tidak mustahil berlaku serentak pada satu entiti tanpa Waw 'Ataf"], a: 1 },
+            
+            // Section 5: Iqtiran bil-Fa'
+            { q: "Huruf 'Fa' sering masuk pada Khabar jika Mubtada bersifat umum (Isim Mausul/Nakirah) dan khabar itu berupa:", options: ["Nama Khas (Isim Alam)", "Natijah / Jawapan / Akibat yang tersusun daripadanya"], a: 1 },
+            { q: "Dalam 'الَّذِي يَجْتَهِدُ فَنَاجِحٌ', mengapa diletakkan Fa pada 'نَاجِحٌ'?", options: ["Kerana 'Alladzi' itu umum dan kejayaan adalah natijah (akibat) usaha.", "Hanya untuk wazan puisi."], a: 0 },
+            { q: "Selepas huruf Syarat 'أَمَّا' (contoh: أَمَّا عَلِيٌّ فَكَرِيمٌ), meletakkan 'Fa' pada Khabar hukumnya:", options: ["Wajib", "Harus (Ja'iz)"], a: 0 },
+            
+            // Section 6: Hazf Khabar (Jawazan & Wujuban)
+            { q: "Dalam jawapan 'عَلِيٌّ' bagi soalan 'مَنْ مُخْلِصٌ؟', khabar yang digugurkan secara JAWAAZAN ialah...", options: ["مُخْلِصٌ", "مَوْجُودٌ", "قَائِمٌ"], a: 0 },
+            { q: "Dalam ayat 'خَرَجْتُ فَإِذَا صَدِيقِي' (Aku keluar, tiba-tiba kawanku...). Khabarnya digugurkan secara:", options: ["جوازا (Harus - Selepas Idza Fuja'iyyah)", "وجوبا (Wajib)"], a: 0 },
+            { q: "Jika selepas 'لَوْلا' khabarnya adalah Kawn Aam (kewujudan mutlak), hukum menyebut khabar itu:", options: ["Wajib digugurkan (Hazf Wujuban)", "Wajib disebut", "Harus"], a: 0 },
+            { q: "Taqdir bagi 'لَوْلَا العَقْلُ لَضَاعَ الإِنْسَانُ' ialah Lawla al-Aqlu...", options: ["مَوْجُودٌ (Wujud)", "ذَاهِبٌ (Pergi)"], a: 0 },
+            { q: "Ayat 'لولا اللاعبون ماهرون ما فاز الفريق'. Mengapa perkataan 'ماهرون' (Khabar) WAJIB disebut?", options: ["Kerana ia Kawn Khas (kewujudan spesifik - kemahiran) dan tiada dalil lain", "Kerana ayat itu panjang"], a: 0 },
+            { q: "Dalam lafaz sumpah nyata 'لَعَمْرُكَ لَيَنْجَحَنَّ المَجْدُ', khabar yang wajib digugurkan taqdirnya ialah:", options: ["مَوْجُودٌ", "قَسَمِي (Sumpahku)"], a: 1 },
+            
+            // Section 7: Wajib Ta'khir Khabar (Mubtada First) - 8 Points
+            { q: "Bila Mubtada itu mempunyai hak Sadarah (Hak di depan) spt Istifham 'مَنْ فَعَلَ هَذَا؟', khabarnya:", options: ["WAJIB di belakang (Ta'khir Wajib)", "Wajib di depan"], a: 0 },
+            { q: "Ayat 'لَلْمَجْدُ نَاجِحٌ', mengapa 'najiḥun' (khabar) wajib dilewatkan ke belakang?", options: ["Mubtada' dimasuki Lam Al-Ibtida' yang mesti berada di awal ayat", "Kerana ia mufrad"], a: 0 },
+            { q: "Ayat 'زَيْدٌ يَلْعَبُ', mengapa Mubtada wajib di depan?", options: ["Kerana jika diterbalikkan (يلعب زيد) ia akan bertukar menjadi Ayat Perbuatan (Jumlah Fi'liyyah), bukan lagi Mubtada Khabar.", "Sebab Zaid itu nama orang"], a: 0 },
+            { q: "Dalam ayat 'أَخِي صَدِيقِي', kedua-duanya Ma'rifah (taraf sama). Kedudukan khabar:", options: ["WAJIB di belakang (Perkataan kedua automatik jadi Khabar)", "Boleh bertukar bebas"], a: 0 },
+            { q: "Ayat 'إِنَّمَا مُحَمَّدٌ رَسُولٌ', Mubtada dikhususkan (Qasr) di dalam Khabar. Di manakah kedudukan Khabar?", options: ["WAJIB di belakang", "WAJIB di depan"], a: 0 },
+            { q: "Ayat 'قُلْ هُوَ اللَّهُ أَحَدٌ'. Perkataan 'هُوَ' di awal ayat dikenali sebagai:", options: ["ضمير الشأن (Dhamir Shaan) - Khabar wajib di belakangnya", "Isim Isharah", "Dhamir Fasl"], a: 0 },
+            { q: "Ayat 'اللَّهُ هُوَ الكَرِيمُ'. Perkataan 'هُوَ' yang memisahkan Mubtada dan Khabar dipanggil:", options: ["ضمير الفصل (Dhamir Fasl)", "ضمير الشأن"], a: 0 },
+            
+            // Section 8: Wajib Taqdim Khabar (Khabar First) - 4 Points
+            { q: "Dalam ayat 'أَيْنَ بَيْتُكَ؟' (Di mana bukumu?), kedudukan khabar 'أَيْنَ':", options: ["WAJIB di depan (Taqdim Wajib) kerana ia Isim Istifham bertaraf Sadarah", "Harus di depan"], a: 0 },
+            { q: "Ayat 'مَا نَاجِحٌ إِلَّا المَجْدُ' (Hanya yang rajin akan berjaya). Khabar dikhususkan dalam Mubtada. Kedudukan Khabar:", options: ["WAJIB di depan", "WAJIB di belakang"], a: 0 },
+            { q: "Mubtada itu Nakirah Mahdhah dan Khabar itu Shibh Jumlah ('فِي الفَصْلِ طَالِبٌ'). Kenapa Khabar WAJIB di depan?", options: ["Jika Nakirah di depan, frasa itu akan dianggap sebagai Sifah (Adjektif), bukan Khabar pelengkap.", "Sebab lebih sedap dibaca"], a: 0 },
+            { q: "Ayat 'فِي البَيْتِ أَهْلُهُ'. Mengapa Khabar (Bait) WAJIB didahulukan?", options: ["Mubtada mengandungi Dhamir (هُ) yang merujuk kepada Khabar. Arab melarang dhamir merujuk kpd sesuatu yang belum disebut.", "Untuk memberi penekanan kpd penghuni"], a: 0 },
+            
+            // EXERCISES FROM THE PDF SCREENSHOTS (THE MISSING ONES)
+            { q: "Tadrib (Latihan At-Tadbiq): Tentukan Al-Khabar dalam ayat: لَعَبْدٌ مُؤْمِنٌ خَيْرٌ مِنْ مُشْرِكٍ", options: ["مُؤْمِنٌ", "خَيْرٌ", "مِنْ مُشْرِكٍ"], a: 1 },
+            { q: "Tadrib: Tentukan Al-Khabar dalam ayat: هَلْ مِنْ خَالِقٍ غَيْرُ اللَّهِ", options: ["خَالِقٍ", "مِنْ", "غَيْرُ"], a: 2 },
+            { q: "Tadrib: Tentukan Al-Khabar dalam ayat: وَكَأَيِّنْ مِنْ نَبِيٍّ قَاتَلَ مَعَهُ رِبِّيُّونَ كَثِيرٌ", options: ["نَبِيٍّ", "قَاتَلَ (Jumlah Fi'liyyah)", "كَثِيرٌ"], a: 1 },
+            { q: "Tadrib: Tentukan Al-Khabar dalam ayat: وَمَا أَصَابَكُمْ مِنْ مُصِيبَةٍ فَبِمَا كَسَبَتْ أَيْدِيكُمْ", options: ["مُصِيبَةٍ", "أَصَابَكُمْ", "فَبِمَا كَسَبَتْ أَيْدِيكُمْ (Jumlah dengan Fa')"], a: 2 },
+            
+            // Final Advanced Mix
+            { q: "Manakah contoh ayat yang menyembunyikan khabar secara WAJIB (Hazf Wujuban)?", options: ["مَنْ فِي الدَّارِ؟ عَلِيٌّ (Jawapan soalan)", "لَوْلَا المَاءُ لَهَلَكْنَا (Selepas Lawla Kawn Aam)"], a: 1 },
+            { q: "Adakah boleh diucapkan 'أَهْلُهُ فِي البَيْتِ' dengan Dhamir 'هُ' merujuk ke depan (perkara belum disebut)?", options: ["Boleh, tiada masalah", "Diharamkan dalam struktur Nahwu standard (Wajib Taqdim Khabar)"], a: 1 }
+        ];
+
+        // --- STATE & CORE LOGIC ---
+        let appState = {
+            xp: 0,
+            modulesCompleted: [],
+            arenaProgress: 0, 
+            badges: [],
+            currentModuleIndex: 0
+        };
+
+        const BADGES_DEFS = {
+            'first_blood': { name: 'Pencari Ilmu', icon: 'fa-book-open', desc: 'Menamatkan Modul Pertama' },
+            'arena_half': { name: 'Pahlawan Nahwu', icon: 'fa-shield-heart', desc: 'Jawab 20 soalan Arena dengan cemerlang' },
+            'arena_full': { name: 'NEXUS MASTER', icon: 'fa-crown', desc: 'Takluki 40 cabaran Arena' }
+        };
+
+        function initApp() {
+            const saved = localStorage.getItem('nahwunexus_premium_state');
+            if (saved) {
+                try { appState = JSON.parse(saved); } 
+                catch(e) { console.error("Corrupted save data."); }
+            }
+            updateUIState();
+            renderModulesGrid();
+        }
+
+        function saveState() {
+            localStorage.setItem('nahwunexus_premium_state', JSON.stringify(appState));
+            updateUIState();
+        }
+
+        function updateUIState() {
+            document.getElementById('nav-xp').innerText = `${appState.xp} XP`;
+            
+            const modProg = (appState.modulesCompleted.length / MODULES.length) * 50;
+            const arenaProg = (appState.arenaProgress / 40) * 50;
+            const total = Math.round(modProg + arenaProg);
+            
+            const dashProgEl = document.getElementById('dash-progress');
+            if(dashProgEl) dashProgEl.innerText = `${total}%`;
+            
+            const arenaStatsEl = document.getElementById('arena-stats');
+            if(arenaStatsEl) arenaStatsEl.innerText = appState.arenaProgress;
+            
+            renderBadges();
+        }
+
+        function navigateTo(viewId) {
+            document.querySelectorAll('.view-section').forEach(el => {
+                el.classList.remove('active');
+                el.style.display = 'none'; 
+            });
+            
+            const target = document.getElementById(`view-${viewId}`);
+            target.style.display = 'block';
+            setTimeout(() => {
+                target.classList.add('active');
+            }, 50);
+
+            const nav = document.getElementById('main-nav');
+            if(viewId !== 'hero') {
+                nav.classList.remove('hidden');
+                nav.classList.add('flex');
+            } else {
+                nav.classList.add('hidden');
+                nav.classList.remove('flex');
+            }
+
+            if(viewId === 'arena') loadArenaQuestion();
+            else if (viewId === 'exam') startExam();
+            
+            window.scrollTo(0,0);
+        }
+
+        function startJourney() { navigateTo('dashboard'); }
+
+        // --- MODULE RENDERING ---
+        function renderModulesGrid() {
+            const container = document.getElementById('modules-container');
+            if(!container) return;
+            container.innerHTML = '';
+            
+            MODULES.forEach((mod, index) => {
+                const isCompleted = appState.modulesCompleted.includes(mod.id);
+                const borderClass = isCompleted ? 'border-cyan shadow-[0_0_15px_rgba(56,217,245,0.2)]' : 'border-bluegrey/20 hover:border-royalgold/50';
+                const iconColor = isCompleted ? 'text-cyan' : 'text-bluegrey';
+                
+                const card = `
+                    <div onclick="openModule(${index})" class="glass-panel p-6 rounded-2xl cursor-pointer transition-all ${borderClass} group relative overflow-hidden">
+                        ${isCompleted ? '<div class="absolute top-0 right-0 w-16 h-16 bg-cyan/10 rounded-bl-full"></div>' : ''}
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-navy border border-ocean flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <i class="fa-solid ${mod.icon} text-2xl ${iconColor}"></i>
+                            </div>
+                            ${isCompleted ? '<i class="fa-solid fa-check-double text-cyan text-xl drop-shadow-[0_0_5px_rgba(56,217,245,0.8)]"></i>' : ''}
+                        </div>
+                        <h4 class="font-black text-lg mb-2 text-white group-hover:text-champagne transition-colors">${mod.title}</h4>
+                        <p class="text-sm text-bluegrey line-clamp-2">${mod.desc}</p>
+                    </div>
+                `;
+                container.innerHTML += card;
+            });
+        }
+
+        function openModule(index) {
+            appState.currentModuleIndex = index;
+            const mod = MODULES[index];
+            
+            document.getElementById('module-content-area').innerHTML = mod.content;
+            
+            const btnPrev = document.getElementById('btn-prev-mod');
+            const btnNext = document.getElementById('btn-next-mod');
+            
+            if(index > 0) {
+                btnPrev.classList.remove('hidden');
+                btnPrev.onclick = () => openModule(index - 1);
+            } else {
+                btnPrev.classList.add('hidden');
+            }
+            
+            btnNext.classList.remove('hidden');
+            if(index < MODULES.length - 1) {
+                btnNext.innerText = "Modul Seterusnya";
+                btnNext.onclick = () => { markModuleComplete(mod.id); openModule(index + 1); };
+            } else {
+                btnNext.innerText = "Kembali Ke Akademi";
+                btnNext.onclick = () => { markModuleComplete(mod.id); navigateTo('dashboard'); };
+            }
+            
+            navigateTo('module');
+            
+            // FIX: Panggil semula pemerhati animasi (observer) untuk kandungan modul yang baru dimasukkan secara dinamik
+            // Ini akan memaparkan teks yang pada mulanya disembunyikan (opacity: 0) oleh kelas .reveal
+            setTimeout(() => {
+                initScrollAnimations();
+            }, 100);
+        }
+
+        function toggleAccordion(headerEl) {
+            headerEl.classList.toggle('active');
+            const content = headerEl.nextElementSibling;
+            content.classList.toggle('expanded');
+        }
+
+        function markModuleComplete(id) {
+            if(!appState.modulesCompleted.includes(id)) {
+                appState.modulesCompleted.push(id);
+                addXP(100);
+                showToast("Modul Selesai!", "+100 XP Tahniah!");
+                if(appState.modulesCompleted.length === 1) awardBadge('first_blood');
+                saveState();
+                renderModulesGrid();
+            }
+        }
+
+
+        // --- ARENA SYSTEM ---
+        let currentArenaQuestion = null;
+
+        function loadArenaQuestion() {
+            if(appState.arenaProgress >= 40) {
+                document.getElementById('arena-question-container').innerHTML = `
+                    <div class="text-center py-12">
+                        <i class="fa-solid fa-trophy text-6xl text-royalgold mb-6 animate-pulse-glow"></i>
+                        <h3 class="text-3xl font-black text-white mb-4">ARENA DITAKLUKI!</h3>
+                        <p class="text-bluegrey mb-8">Anda telah menjawab kesemua 40 cabaran analitik.</p>
+                        <button onclick="navigateTo('dashboard')" class="btn-primary px-8 py-3 rounded-full">Kembali</button>
+                    </div>
+                `;
+                return;
+            }
+            
+            const idx = appState.arenaProgress;
+            currentArenaQuestion = ARENA_QUESTIONS[idx];
+            
+            document.getElementById('arena-q-num').innerText = idx + 1;
+            document.getElementById('arena-progress-bar').style.width = `${((idx)/40)*100}%`;
+            
+            let optionsHtml = '';
+            currentArenaQuestion.options.forEach((opt, i) => {
+                optionsHtml += `<button onclick="handleArenaAnswer(${i})" class="w-full text-right arabic-text text-xl md:text-2xl p-5 mb-4 bg-midnight/80 border-2 border-ocean hover:border-cyan transition-all rounded-xl font-bold shadow-md hover:shadow-[0_0_15px_rgba(56,217,245,0.3)]">${opt}</button>`;
+            });
+
+            document.getElementById('arena-question-container').innerHTML = `
+                <h4 class="text-2xl md:text-3xl mb-10 font-bold text-white leading-relaxed border-b border-royalgold/30 pb-6">${currentArenaQuestion.q}</h4>
+                <div id="q-options" class="flex flex-col gap-2">
+                    ${optionsHtml}
+                </div>
+                <div id="q-feedback" class="mt-8 text-xl font-bold min-h-[50px] hidden rounded-xl p-5 shadow-inner border transition-all"></div>
+                <button id="q-next-btn" class="hidden mt-8 w-full py-4 bg-gradient-to-r from-ocean to-cyan hover:from-cyan hover:to-royalgold text-white font-black uppercase tracking-widest rounded-xl transition-all shadow-[0_0_20px_rgba(56,217,245,0.3)] hover:-translate-y-1">Soalan Seterusnya <i class="fa-solid fa-angles-right ml-2"></i></button>
+            `;
+        }
+
+        function handleArenaAnswer(selectedIndex) {
+            const isCorrect = selectedIndex === currentArenaQuestion.a;
+            const fb = document.getElementById('q-feedback');
+            const btns = document.getElementById('q-options').children;
+            const nextBtn = document.getElementById('q-next-btn');
+            
+            for(let btn of btns) btn.onclick = null; // disable clicks
+            
+            fb.classList.remove('hidden');
+            if(isCorrect) {
+                fb.classList.add('bg-green-900/40', 'text-green-400', 'border-green-500');
+                fb.innerHTML = '<i class="fa-solid fa-check-double mr-3 text-2xl"></i> Analisis Tepat! Luar Biasa.';
+                btns[selectedIndex].classList.add('bg-green-900/60', 'border-green-400', 'shadow-[0_0_20px_rgba(74,222,128,0.4)]');
+                
+                addXP(25);
+                
+                nextBtn.classList.remove('hidden');
+                nextBtn.onclick = () => {
+                    appState.arenaProgress++;
+                    if(appState.arenaProgress === 20) awardBadge('arena_half');
+                    if(appState.arenaProgress === 40) awardBadge('arena_full');
+                    saveState();
+                    loadArenaQuestion();
+                };
+            } else {
+                fb.classList.add('bg-red-900/40', 'text-red-400', 'border-red-500');
+                fb.innerHTML = '<i class="fa-solid fa-triangle-exclamation mr-3 text-2xl"></i> Kurang Tepat. Teliti semula kaedah Nahwu.';
+                btns[selectedIndex].classList.add('bg-red-900/60', 'border-red-400');
+                
+                setTimeout(() => {
+                    fb.classList.add('hidden');
+                    fb.className = 'mt-8 text-xl font-bold min-h-[50px] hidden rounded-xl p-5 shadow-inner border transition-all';
+                    btns[selectedIndex].classList.remove('bg-red-900/60', 'border-red-400');
+                    for(let i=0; i<btns.length; i++) {
+                        btns[i].onclick = () => handleArenaAnswer(i);
+                    }
+                }, 2000);
+            }
+        }
+
+        // --- FINAL BOSS EXAM ---
+        let examQuestions = [];
+        let currentExamIndex = 0;
+        let examScore = 0;
+
+        function startExam() {
+            const shuffled = [...ARENA_QUESTIONS].sort(() => 0.5 - Math.random());
+            examQuestions = shuffled.slice(0, 15);
+            currentExamIndex = 0;
+            examScore = 0;
+            
+            document.getElementById('exam-container').innerHTML = `
+                <div class="text-center mb-10">
+                    <h2 class="text-5xl font-black text-royalgold mb-2 uppercase tracking-tighter" style="text-shadow: 0 0 20px rgba(214,174,82,0.4);"><i class="fa-solid fa-crown mr-2"></i> Final Boss Exam</h2>
+                    <p class="text-bluegrey text-lg">15 Soalan. Ujian komprehensif mengikut standard Dr. Mohd Taufiq.</p>
+                    <div class="mt-6 flex justify-center gap-2" id="exam-progress-dots">
+                        ${examQuestions.map((_,i) => `<div class="w-3 h-3 rounded-full bg-ocean transition-colors" id="edot-${i}"></div>`).join('')}
+                    </div>
+                </div>
+                <div id="exam-q-area" class="glass-panel p-8 md:p-12 rounded-[2rem] relative shadow-2xl border-t-4 border-t-royalgold min-h-[350px]"></div>
+            `;
+            
+            loadExamQuestion();
+        }
+
+        function loadExamQuestion() {
+            if(currentExamIndex >= 15) {
+                showExamResults();
+                return;
+            }
+            
+            const qObj = examQuestions[currentExamIndex];
+            
+            // Highlight dot
+            document.getElementById(`edot-${currentExamIndex}`).classList.remove('bg-ocean');
+            document.getElementById(`edot-${currentExamIndex}`).classList.add('bg-royalgold', 'shadow-[0_0_10px_gold]');
+            
+            let optionsHtml = '';
+            qObj.options.forEach((opt, i) => {
+                optionsHtml += `<button onclick="handleExamAnswer(${i}, ${qObj.a})" class="w-full text-right arabic-text text-xl p-5 mb-4 glass-panel border border-ocean hover:border-royalgold transition-all rounded-xl font-bold shadow hover:-translate-x-2">${opt}</button>`;
+            });
+
+            document.getElementById('exam-q-area').innerHTML = `
+                <h4 class="text-3xl mb-10 font-bold text-white leading-relaxed">${qObj.q}</h4>
+                <div class="flex flex-col gap-2">
+                    ${optionsHtml}
+                </div>
+            `;
+        }
+
+        function handleExamAnswer(selected, correct) {
+            if(selected === correct) examScore++;
+            currentExamIndex++;
+            loadExamQuestion();
+        }
+
+        function showExamResults() {
+            const percentage = Math.round((examScore / 15) * 100);
+            let rank = "", color = "", desc = "";
+            
+            if(percentage < 50) { rank = "Foundation Explorer"; color = "text-bluegrey"; desc = "Perlukan lebih ulang kaji modul asas."; }
+            else if(percentage < 70) { rank = "Grammar Apprentice"; color = "text-cyan"; desc = "Asas yang baik, teruskan penerokaan."; }
+            else if(percentage < 85) { rank = "Grammar Specialist"; color = "text-champagne"; desc = "Sangat mahir! Anda menguasai sebahagian besar kaedah."; }
+            else { rank = "NEXUS MASTER"; color = "text-royalgold"; desc = "Pencapaian Mutlak! Penguasaan nahu bertaraf tinggi."; }
+
+            document.getElementById('exam-container').innerHTML = `
+                <div class="glass-panel p-12 rounded-[3rem] text-center max-w-2xl mx-auto transform animate-float border-2 border-royalgold shadow-[0_0_50px_rgba(214,174,82,0.2)] bg-gradient-to-b from-navy to-midnight">
+                    <h2 class="text-3xl font-black mb-2 text-white">KEPUTUSAN PENILAIAN</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-transparent via-royalgold to-transparent mx-auto my-6"></div>
+                    
+                    <div class="text-[7rem] font-black mb-2 leading-none ${color}" style="text-shadow: 0 10px 30px rgba(0,0,0,0.5);">${percentage}%</div>
+                    <p class="text-xl text-softwhite/80 mb-8 font-medium">Skor: <span class="font-bold text-white">${examScore} / 15</span> Tepat.</p>
+                    
+                    <p class="text-sm text-bluegrey mb-2 uppercase tracking-widest font-bold">Pangkat Dianugerahkan:</p>
+                    <h3 class="text-4xl font-black ${color} mb-4 uppercase tracking-widest">${rank}</h3>
+                    <p class="text-bluegrey mb-12">${desc}</p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button onclick="startExam()" class="px-8 py-4 border-2 border-royalgold text-royalgold hover:bg-royalgold hover:text-midnight font-black uppercase tracking-wider rounded-xl transition-all shadow-[0_0_15px_rgba(214,174,82,0.2)]">Ulangi Ujian</button>
+                        <button onclick="navigateTo('dashboard')" class="btn-primary px-8 py-4 rounded-xl transition-all">Kembali Ke Akademi</button>
+                    </div>
+                </div>
+            `;
+            
+            addXP(examScore * 50);
+            saveState();
+        }
+
+        // --- UTILS ---
+        function addXP(amount) {
+            appState.xp += amount;
+            const xpEl = document.getElementById('nav-xp');
+            if(xpEl) {
+                xpEl.innerText = `${appState.xp} XP`;
+                xpEl.classList.add('text-cyan', 'scale-125');
+                setTimeout(() => xpEl.classList.remove('text-cyan', 'scale-125'), 500);
+            }
+        }
+
+        function awardBadge(badgeId) {
+            if(!appState.badges.includes(badgeId) && BADGES_DEFS[badgeId]) {
+                appState.badges.push(badgeId);
+                showToast("Lencana Baharu!", `Dianugerahkan: ${BADGES_DEFS[badgeId].name}`);
+            }
+        }
+
+        function renderBadges() {
+            const container = document.getElementById('badges-container');
+            if(!container) return;
+            container.innerHTML = '';
+            
+            if(appState.badges.length === 0) {
+                container.innerHTML = '<span class="text-sm text-bluegrey italic font-medium bg-midnight px-4 py-2 rounded-lg border border-ocean">Belum ada pencapaian. Mula meneroka!</span>';
+                return;
+            }
+            
+            appState.badges.forEach(bId => {
+                const b = BADGES_DEFS[bId];
+                container.innerHTML += `
+                    <div class="bg-gradient-to-br from-navy to-midnight border border-royalgold/40 p-3 rounded-xl flex items-center gap-3 shadow-[0_0_10px_rgba(214,174,82,0.2)]" title="${b.desc}">
+                        <div class="w-10 h-10 rounded-full bg-royalgold/10 flex items-center justify-center">
+                            <i class="fa-solid ${b.icon} text-xl text-royalgold drop-shadow-md"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs font-black text-champagne uppercase tracking-wide">${b.name}</div>
+                            <div class="text-[10px] text-bluegrey">${b.desc}</div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function showToast(title, msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-title').innerText = title;
+            document.getElementById('toast-msg').innerText = msg;
+            
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 4000);
+        }
+
+        function resetProgress() {
+            if(confirm("AMARAN: Anda pasti ingin memadam SEMUA rekod akademik anda (XP, Lencana, Modul)?")) {
+                localStorage.removeItem('nahwunexus_premium_state');
+                location.reload();
+            }
+        }
+        
+        // --- SCROLL REVEAL ANIMATION OBSERVER ---
+        function initScrollAnimations() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Optional: observer.unobserve(entry.target) if you only want it to animate once
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach((el) => {
+                observer.observe(el);
+            });
+        }
+
+        window.onload = () => {
+            initApp();
+            initScrollAnimations();
+        };
+    </script>
+</body>
+</html>
